@@ -1,0 +1,33 @@
+{% extends 'core/base.html' %}
+
+{% block title %}People List{% endblock %}
+
+{% block content %}
+<h1>People List</h1>
+<table class="table table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Position</th>
+            <th scope="col">Company</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for person in people %}
+        <tr>
+            <th scope="row">{{ forloop.counter }}</th>
+            <td>{{ person.name }}</td>
+            <td>{{ person.email }}</td>
+            <td>{{ person.position }}</td>
+            <td>{{ person.company }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="5">No people found</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
