@@ -7,6 +7,18 @@ from rest_framework.generics import RetrieveUpdateAPIView, ListAPIView
 from .serializers import TaskSerializer, ProjectSerializer, ProjectTaskTreeSerializer
 from django.http import JsonResponse
 import logging
+from django.http import HttpResponse
+import os
+from django.conf import settings
+
+
+def serve_react_frontend(request):
+    frontend_build_path = os.path.join(settings.BASE_DIR, 'frontend/build/index.html')
+    try:
+        with open(frontend_build_path, "r") as file:
+            return HttpResponse(file.read())
+    except FileNotFoundError:
+        return HttpResponse("React build not found. Did you run `npm run build`?", status=500)
 
 
 def project_list(request):

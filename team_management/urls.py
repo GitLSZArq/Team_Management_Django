@@ -18,10 +18,16 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import TemplateView
-
+from django.views.static import serve
+from django.conf import settings
+from django.urls import re_path
+import os
+from core.views import serve_react_frontend
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('core.urls')),  # Include your app's URLs
-    path('', TemplateView.as_view(template_name='index.html')),  # Serve the React app
+    # Serve React index.html for any unknown route
+    re_path(r'^(?:.*)/?$', lambda request: serve(request, os.path.join(settings.BASE_DIR, 'frontend/build', 'index.html')))
 ]
+urlpatterns.append(re_path(r'^.*$', serve_react_frontend))
