@@ -28,6 +28,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('core.urls')),  # Include your app's URLs
     # Serve React index.html for any unknown route
-    re_path(r'^(?:.*)/?$', lambda request: serve(request, os.path.join(settings.BASE_DIR, 'frontend/build', 'index.html')))
+    re_path(r'^(?:.*)/?$', serve_react_frontend),
 ]
 urlpatterns.append(re_path(r'^.*$', serve_react_frontend))
