@@ -3,5 +3,5 @@ services:
     name: team_management
     env: python
     buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn team_management.wsgi:application
+    startCommand: gunicorn --bind 0.0.0.0:$PORT team_management.wsgi:application
     pythonVersion: 3.10.12
