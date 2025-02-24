@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: team_management
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn team_management.wsgi:application
+    pythonVersion: 3.10.12
