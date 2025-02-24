@@ -1,0 +1,21 @@
+body {
+  background-color: #121212; /* Dark background */
+  color: #e0e0e0; /* Light text */
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+/* Override styles for weekends to remove transparency */
+.rct-day-6, /* Saturday */
+.rct-day-0  /* Sunday */ {
+  background-color: inherit !important; /* Ensure the same background as other days */
+  opacity: 1 !important; /* Ensure full opacity */
+}

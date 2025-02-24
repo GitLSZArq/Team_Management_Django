@@ -1,0 +1,42 @@
+I am planning to start a new interface that is very user friendly and very beautiful to use. I have Python installed on my PC, if it's easy to do in Python, let's go for that, if not, u guide me how to do it.
+
+The goal is to do the following :
+
+1. It's an interface for Team Management
+2. I want to make multiple sections that are all connected to each others : 
+	a. Section "People" : It's the list of all the people in the team as well as information about them
+	b. Section "Project" : 
+		i. List of projects in progess
+		ii. The project has a unique name	
+		iii. The project has a unique code
+		iv. it needs to containe a list of tasks that can increase manually by any team member
+		v. Each task is associated to a team member
+		vi. Each task has a date of start, a desired day of end and a real date of end
+		vii. each task has a % of progress as well as a visual bar linked to that %
+	c. Section dedicated to the simulations
+		i. It is similar to the projects but it's dedicated for simulation activites
+		ii. It needs to have all the same paramters as a project
+
+I repeat, i need it to be visually appealing to use, make it maybe like bubble interfaces , something very nice to use, i don't want a boring interface.
+If u have very nice ideas, propose them.
+
+So please save this as the plan, and let's start step by step
+
+cd desktop/team_management
+
+python manage.py makemigrations
+python manage.py migrate
+python manage.py runserver
+python manage.py runserver --verbosity 3
+
+
+npm install -g serve
+serve -s build
+
+npm run build
+npm start
+
+
+http://127.0.0.1:8000/api/projects/
+http://127.0.0.1:8000/api/tasks/
+http://127.0.0.1:8000/api/people/

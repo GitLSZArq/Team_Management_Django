@@ -1,0 +1,161 @@
+/* Tasks.css */
+.timeline-container {
+  display: flex;
+  height: calc(100vh - 64px); /* Adjust according to header height */
+  width: 125%; /* Use the full width */
+  position: relative; /* Relative positioning to use left property */
+  left: -25%; /* Adjust this value as needed to utilize the left space */
+  flex-grow: 1;
+  overflow: hidden;
+}
+
+.timeline {
+  flex-grow: 1;
+  width: 120%; /* Increase to ensure full use of available space */
+  overflow: hidden;
+}
+
+.rct-items {
+  border: none !important; /* Remove borders for the entire timeline */
+}
+
+.rct-item {
+  border: none !important; /* Remove borders for individual items */
+}
+
+.rct-horizontal-lines .rct-hl-primary,
+.rct-horizontal-lines .rct-hl-secondary {
+  border-top: none !important; /* Remove horizontal grid lines */
+  border-bottom: none !important; /* Remove horizontal grid lines */
+}
+
+.rct-header-root,
+.rct-header-root .rct-header-timeline {
+  border-bottom: 1px solid #ddd; /* Keep border for the header */
+}
+
+.rct-header-root .rct-dateHeader {
+  border-right: 1px solid #ddd; /* Keep vertical border for the header */
+}
+
+.rct-header-root .rct-dateHeader-primary {
+  border-bottom: 1px solid #ddd; /* Keep horizontal border for the primary date header */
+}
+
+.rct-header-root .rct-dateHeader-secondary {
+  border-bottom: 1px solid #ddd; /* Keep horizontal border for the secondary date header */
+}
+
+.rct-vertical-lines .rct-vl {
+  border-left: none !important; /* Remove vertical grid lines */
+}
+
+.rct-vertical-lines .rct-vl-label {
+  display: none !important; /* Hide the labels for vertical grid lines */
+}
+
+.rct-sidebar {
+  width: 20%;
+  display: grid;
+  grid-auto-rows: 50px;
+}
+
+.group-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-color: #e0e0e0;
+  border-right: 1px solid #ddd; /* Keep border on the right for group cells */
+  border-bottom: 1px solid #ddd; /* Keep border on the bottom for group cells */
+  transition: all 0.3s ease;
+  cursor: pointer;
+  width: 100%; /* Ensure project bars span the full width */
+}
+
+.group-cell:hover {
+  background-color: #d0d0d0;
+}
+
+.task-details {
+  flex: 0 0 300px; /* Adjust this value to change the width of the details panel */
+  padding: 10px;
+  border-left: 1px solid #ddd;
+  overflow: auto;
+  position: absolute;
+  right: 0;
+  top: 64px; /* Adjust according to header height */
+  bottom: 0;
+  background: #fff; /* Background color for details panel */
+  z-index: 100; /* Ensure it is above other elements */
+}
+
+@media (min-width: 1911px) {
+  .timeline-container {
+    display: flex;
+    height: calc(100vh - 64px); /* Adjust according to header height */
+    width: 168%; /* Use the full width */
+    position: relative; /* Relative positioning to use left property */
+    left: -45%; /* Adjust this value as needed to utilize the left space */
+    flex-grow: 1;
+    overflow: hidden;
+  }
+
+  .timeline {
+    width: 100%;
+  }
+}
+
+@media (max-width: 1910px) {
+  .timeline-container {
+    display: flex;
+    height: calc(100vh - 64px); /* Adjust according to header height */
+    width: 125%; /* Use the full width */
+    position: relative; /* Relative positioning to use left property */
+    left: -25%; /* Adjust this value as needed to utilize the left space */
+    flex-grow: 1;
+    overflow: hidden;
+  }
+
+  .timeline {
+    width: 100%;
+  }
+}
+
+
+/* Ensure consistent styles for all days */
+.rct-calendar .rct-day,
+.rct-timeline .rct-day,
+.rct-day,
+.rct-timeline .rct-day.rct-day-off,
+.rct-calendar .rct-day.rct-day-off,
+.rct-day-off {
+  background-color: #fff !important; /* Uniform background color */
+  color: #000 !important; /* Uniform font color */
+  font-family: inherit !important; /* Uniform font family */
+  opacity: 1 !important; /* Ensure full opacity */
+  pointer-events: auto !important; /* Ensure pointer events are enabled */
+}
+
+/* Center the "Projects" text and make it white */
+.sidebar-header {
+  color: white !important; /* Ensure text is white */
+  background-color: inherit; /* Use the original background color */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  font-weight: bold; /* Optional: make the text bold */
+  text-transform: uppercase; /* Optional: make the text uppercase */
+  padding: 0; /* Remove any padding */
+  margin: 0; /* Remove any margin */
+}
+
+/* Ensure the sidebar-header spans multiple rows */
+.sidebar-header-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  background-color: #d9534f; /* Ensure consistent background color */
+}

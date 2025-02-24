@@ -1,0 +1,195 @@
+/* Tasks.css */
+.timeline-container {
+  background-color: #121212; /* Darker background */
+  display: flex;
+  height: calc(1000vh - 64px); /* Adjust according to header height */
+  width: 125%; /* Use the full width */
+  position: relative; /* Relative positioning to use left property */
+  left: -25%; /* Adjust this value as needed to utilize the left space */
+  flex-grow: 1;
+  overflow: hidden;
+}
+
+.timeline {
+  flex-grow: 1;
+  width: 120%; /* Increase to ensure full use of available space */
+  overflow: hidden;
+}
+
+.timeline .item {
+  background-color: #333; /* Darker item background */
+  color: #e0e0e0; /* Light text */
+}
+
+.rct-items {
+  border: none !important; /* Remove borders for the entire timeline */
+}
+
+
+
+.rct-horizontal-lines .rct-hl-primary,
+.rct-horizontal-lines .rct-hl-secondary {
+  border-top: none !important; /* Remove horizontal grid lines */
+  border-bottom: none !important; /* Remove horizontal grid lines */
+}
+
+.rct-header-root,
+.rct-header-root .rct-header-timeline {
+  background-color: #1f1f1f; /* Darker background */
+  color: #e0e0e0; /* Light text */
+  border-bottom: 1px solid #ddd; /* Border to match the table style */
+}
+
+.rct-header-root .rct-dateHeader {
+  background-color: #1f1f1f; /* Dark background */
+  color: #e0e0e0; /* Light text */
+  border-right: 1px solid #ddd; /* Keep vertical border for the header */
+}
+
+.rct-header-root .rct-dateHeader-primary {
+  background-color: #1f1f1f; /* Dark background */
+  color: #e0e0e0; /* Light text */
+  border-bottom: 1px solid #ddd; /* Keep horizontal border for the primary date header */
+}
+
+.rct-header-root .rct-dateHeader-secondary {
+  background-color: #1f1f1f; /* Dark background */
+  color: #e0e0e0; /* Light text */
+  border-bottom: 1px solid #ddd; /* Keep horizontal border for the secondary date header */
+}
+
+.rct-vertical-lines .rct-vl {
+  border-left: none !important; /* Remove vertical grid lines */
+}
+
+.rct-vertical-lines .rct-vl-label {
+  display: none !important; /* Hide the labels for vertical grid lines */
+}
+
+.rct-sidebar {
+  width: 20%;
+  display: grid;
+  grid-auto-rows: 50px;
+}
+
+.group-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-color: #2c2c2c; /* Darker group cell background */
+  color: #e0e0e0; /* Light text */
+  border-right: 1px solid #ddd; /* Keep border on the right for group cells */
+  border-bottom: 1px solid #ddd; /* Keep border on the bottom for group cells */
+  transition: all 0.3s ease;
+  cursor: pointer;
+  width: 100%; /* Ensure project bars span the full width */
+}
+
+.group-cell:hover {
+  background-color: #444; /* Darker hover background */
+}
+
+.task-details {
+  background-color: #333; /* Dark details panel */
+  color: #e0e0e0; /* Light text */
+  flex: 0 0 300px; /* Adjust this value to change the width of the details panel */
+  padding: 10px;
+  border-left: 1px solid #ddd;
+  overflow: auto;
+  position: absolute;
+  right: 0;
+  top: 64px; /* Adjust according to header height */
+  bottom: 0;
+  z-index: 100; /* Ensure it is above other elements */
+}
+
+@media (min-width: 2293px) {
+  .timeline-container {
+    background-color: #121212; /* Darker background */
+    display: flex;
+    height: calc(1000vh - 64px); /* Adjust according to header height */
+    width: 220%; /* Use the full width */
+    position: relative; /* Relative positioning to use left property */
+    left: -60%; /* Adjust this value as needed to utilize the left space */
+    flex-grow: 1;
+    overflow: hidden;
+  }
+
+  .timeline {
+    width: 100%;
+  }
+}
+
+@media (max-width: 2292px) {
+  .timeline-container {
+    background-color: #121212; /* Darker background */
+    display: flex;
+    height: calc(1000vh - 64px); /* Adjust according to header height */
+    width: 175%; /* Use the full width */
+    position: relative; /* Relative positioning to use left property */
+    left: -35%; /* Adjust this value as needed to utilize the left space */
+    flex-grow: 1;
+    overflow: hidden;
+  }
+
+  .timeline {
+    width: 100%;
+  }
+}
+
+
+
+
+/* Center the "Projects" text and make it white */
+.sidebar-header {
+  background-color: #2c2c2c; /* Darker background */
+  color: #e0e0e0 !important; /* Light text */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  font-weight: bold; /* Optional: make the text bold */
+  text-transform: uppercase; /* Optional: make the text uppercase */
+  padding: 0; /* Remove any padding */
+  margin: 0; /* Remove any margin */
+  border-bottom: 1px solid #ddd; /* Add border to match the table style */
+}
+
+/* Ensure the sidebar-header spans multiple rows */
+.sidebar-header-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  background-color: #2c2c2c; /* Darker background */
+}
+
+.rct-dateHeader, .rct-dateHeader-primary, .rct-dateHeader-secondary {
+  background-color: #1f1f1f; /* Darker background for date headers */
+  color: #e0e0e0 !important; /* Light text for date headers */
+  border-bottom: 1px solid #ddd; /* Border to match the table style */
+}
+
+/* Tasks.css */
+/* Ensure consistent styles for all days including weekends */
+.rct-calendar .rct-day,
+.rct-timeline .rct-day,
+.rct-day,
+.rct-timeline .rct-day.rct-day-off,
+.rct-calendar .rct-day.rct-day-off,
+.rct-day-off {
+  background-color: #1f1f1f !important; /* Same dark background */
+  color: #e0e0e0 !important; /* Light text */
+  font-family: inherit !important;
+  opacity: 1 !important; /* Ensure full opacity */
+  pointer-events: auto !important;
+}
+
+.rct-calendar .rct-day.rct-day-off,
+.rct-timeline .rct-day.rct-day-off {
+  background-color: #1f1f1f !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+

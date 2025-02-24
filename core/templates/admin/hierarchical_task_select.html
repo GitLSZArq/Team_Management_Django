@@ -1,0 +1,165 @@
+{% load static %}
+<style>
+    /* Default (light) theme styles for a nested dropdown */
+    .hierarchical-select {
+        border: 1px solid #ccc;
+        padding: 5px;
+        width: 300px;
+        background: #fff;
+        color: #000;
+        position: relative;
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+    }
+    .hierarchical-select .selected-item {
+        padding: 5px;
+        border-bottom: 1px solid #ccc;
+        cursor: pointer;
+    }
+    .hierarchical-select ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    .hierarchical-select li {
+        padding: 5px 10px;
+        cursor: pointer;
+        position: relative;
+    }
+    .hierarchical-select li:hover {
+        background: #eee;
+    }
+    .hierarchical-select .nested {
+        margin-left: 15px;
+        display: none;
+    }
+    .hierarchical-select .expanded > .nested {
+        display: block;
+    }
+    
+    /* Add a scrollbar for long lists */
+    .hierarchical-select .dropdown {
+        max-height: 300px;
+        overflow-y: auto;
+        border-top: 1px solid #ccc;
+    }
+    
+    /* Visual arrow for expandable items */
+    .hierarchical-select li[data-has-children]::before {
+        content: "▶";
+        display: inline-block;
+        margin-right: 5px;
+        transition: transform 0.2s;
+    }
+    .hierarchical-select li.expanded[data-has-children]::before {
+        transform: rotate(90deg);
+    }
+    
+    /* Night mode / dark theme styles */
+    @media (prefers-color-scheme: dark) {
+        .hierarchical-select {
+            border: 1px solid #555;
+            background: #333;
+            color: #fff;
+        }
+        .hierarchical-select .selected-item {
+            border-bottom: 1px solid #555;
+        }
+        .hierarchical-select li {
+            color: #fff;
+        }
+        .hierarchical-select li:hover {
+            background: #444;
+        }
+        .hierarchical-select .dropdown {
+            border-top: 1px solid #555;
+        }
+    }
+</style>
+    
+
+<div class="hierarchical-select" id="hierarchical-select-{{ widget.name }}">
+    <input type="hidden" name="{{ widget.name }}" value="{{ widget.value }}" />
+    <div class="selected-item" id="selected-item-{{ widget.name }}">
+        {% if widget.value %}
+            Selected: {{ widget.value }}
+        {% else %}
+            Click to select a parent task (optional)
+        {% endif %}
+    </div>
+    <div class="dropdown">
+        <ul>
+            {# Render all projects – later JavaScript will filter by the selected project #}
+            {% for project in widget.data %}
+                <li data-id="{{ project.id }}">
+                    <strong>{{ project.name }}</strong>
+                    {% if project.tasks %}
+                        <ul class="nested">
+                            {% for task in project.tasks %}
+                                {% include "admin/hierarchical_task_item.html" with item=task %}
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+<script>
+// Immediately invoked function to handle expand/collapse and filtering by project.
+(function(){
+    var container = document.getElementById("hierarchical-select-{{ widget.name }}");
+    var hiddenInput = container.querySelector('input[type="hidden"]');
+    var selectedDiv = container.querySelector('.selected-item');
+
+    // Click handler for expand/collapse and selecting a task.
+    container.addEventListener('click', function(e) {
+        var target = e.target;
+        // We want to act on the <li> element. If the target isn’t an <li>,
+        // then get its closest parent <li>.
+        if (target.tagName.toLowerCase() !== 'li') {
+            target = target.closest('li');
+        }
+        if (!target) return;
+
+        // If this <li> has a nested <ul>, toggle its expansion.
+        var nested = target.querySelector('ul.nested');
+        if (nested) {
+            target.classList.toggle('expanded');
+        }
+        // If the clicked item’s data-id does not start with "project-",
+        // then treat it as a task selection.
+        var value = target.getAttribute('data-id');
+        if (value && value.indexOf('project-') !== 0) {
+            hiddenInput.value = value;
+            selectedDiv.innerText = target.innerText.trim();
+        }
+    });
+
+    // Function to filter the hierarchy to only show the selected project.
+    function updateParentWidget() {
+        // Look for the "project" field in the admin form.
+        var projectField = document.querySelector('[name="project"]');
+        if (!projectField) return;
+        var selectedProject = projectField.value;
+        var projectItems = container.querySelectorAll('li[data-id^="project-"]');
+        projectItems.forEach(function(item) {
+            // If the project's id (which we stored as "project-<id>") matches the selected project, show it.
+            if (item.getAttribute('data-id') === 'project-' + selectedProject) {
+                item.style.display = 'block';
+            } else {
+                item.style.display = 'none';
+            }
+        });
+    }
+
+    // Listen for changes on the "project" field and update the widget.
+    var projectField = document.querySelector('[name="project"]');
+    if (projectField) {
+        projectField.addEventListener('change', updateParentWidget);
+        // Initial update on page load.
+        updateParentWidget();
+    }
+})();
+</script>

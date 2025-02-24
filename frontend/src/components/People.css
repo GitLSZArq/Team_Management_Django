@@ -1,0 +1,74 @@
+/* For very large screens */
+@media (min-width: 2293px) {
+  .people-table-container {
+    background-color: #121212; /* Darker background */
+    display: flex;
+    margin: 0 auto; /* Center the table horizontally */
+    width: 150%; /* Use the full width */
+    position: relative; /* Relative positioning to use left property */
+    left: -00%; /* Adjust this value as needed to utilize the left space */
+    right: -40%;
+    flex-grow: 1;
+    overflow: hidden;
+  }
+
+  .people-table {
+    width: 100%;
+  }
+}
+
+/* For large screens */
+@media (max-width: 2292px) {
+  .people-table-container {
+    background-color: #121212; /* Darker background */
+    display: flex;
+    margin: 0 auto; /* Center the table horizontally */
+    width: 250%; /* Use the full width */
+    position: relative; /* Relative positioning to use left property */
+    left: -00%; /* Adjust this value as needed to utilize the left space */
+    flex-grow: 1;
+    overflow: hidden;
+  }
+
+  .people-table {
+    width: 100%;
+  }
+}
+
+/* For medium screens */
+@media (max-width: 1400px) {
+  .people-table-container {
+    background-color: #121212; /* Darker background */
+    display: flex;
+    margin: 0 auto; /* Center the table horizontally */
+    width: 150%; /* Use the full width */
+    position: relative; /* Relative positioning to use left property */
+    left: -25%; /* Adjust this value as needed to utilize the left space */
+    flex-grow: 1;
+    overflow: hidden;
+  }
+
+  .people-table {
+    width: 100%;
+  }
+}
+
+/* For small screens */
+@media (max-width: 992px) {
+  .people-table-container {
+    background-color: #121212; /* Darker background */
+    display: flex;
+    margin: 0 auto; /* Center the table horizontally */
+    width: 100%; /* Use the full width */
+    position: relative; /* Relative positioning to use left property */
+    left: 0; /* No left offset needed */
+    flex-grow: 1;
+    overflow: hidden;
+  }
+
+  .people-table {
+    width: 100%;
+  }
+}
+
+

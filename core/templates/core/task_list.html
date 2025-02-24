@@ -1,16 +1,38 @@
 {% extends 'core/base.html' %}
 
-{% block title %}Task List{% endblock %}
-
 {% block content %}
+<style>
+    th, td {
+        white-space: nowrap;
+    }
+    td.task-name {
+        white-space: normal;
+    }
+    .progress {
+        background-color: #f8f9fa;
+        border: 1px solid #dee2e6;
+        position: relative;
+        height: 20px;
+    }
+    .progress-bar {
+        background-color: #007bff;
+        color: white;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+    }
+</style>
 <h1>Task List</h1>
 <table class="table table-striped">
     <thead class="table-dark">
         <tr>
             <th scope="col">#</th>
-            <th scope="col">Task Name</th>
+            <th scope="col" style="width: 30%;">Task Name</th>
             <th scope="col">Project</th>
             <th scope="col">Assigned To</th>
+            <th scope="col">Priority</th>
             <th scope="col">Start Date</th>
             <th scope="col">Deadline</th>
             <th scope="col">Actual End Date</th>
@@ -21,21 +43,24 @@
         {% for task in tasks %}
         <tr>
             <th scope="row">{{ forloop.counter }}</th>
-            <td>{{ task.name }}</td>
+            <td class="task-name">{{ task.name }}</td>
             <td>{{ task.project.name }}</td>
             <td>{{ task.assigned_to.name }}</td>
+            <td>T{{ task.priority }}</td>
             <td>{{ task.start_date|date:"Y-m-d" }}</td>
             <td>{{ task.deadline|date:"Y-m-d" }}</td>
             <td>{{ task.actual_end_date|date:"Y-m-d" }}</td>
             <td>
                 <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: {{ task.progress }}%" aria-valuenow="{{ task.progress }}" aria-valuemin="0" aria-valuemax="100">{{ task.progress }}%</div>
+                    <div class="progress-bar" role="progressbar" style="width: {{ task.progress }}%" aria-valuenow="{{ task.progress }}" aria-valuemin="0" aria-valuemax="100">
+                        {{ task.progress }}%
+                    </div>
                 </div>
             </td>
         </tr>
         {% empty %}
         <tr>
-            <td colspan="8">No tasks found</td>
+            <td colspan="9">No tasks found</td>
         </tr>
         {% endfor %}
     </tbody>

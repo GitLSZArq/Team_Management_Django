@@ -1,0 +1,193 @@
+@import 'react-big-calendar/lib/css/react-big-calendar.css';
+
+.App {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.timeline-container {
+  display: flex;
+  height: calc(100vh - 64px); /* Adjust according to header height */
+  width: 100%;
+  flex-grow: 1;
+}
+
+.timeline {
+  flex-grow: 1;
+  overflow: hidden;
+}
+
+.timeline .item {
+  border: 2px solid red;
+   
+}
+
+.sidebar-header {
+  background-color: #e0e0e0;
+  padding: 8px;
+  border-right: 1px solid #ddd;
+}
+
+.date-header-primary, .date-header-secondary {
+  background-color: #e0e0e0;
+  border-bottom: 1px solid #ddd;
+}
+
+.date-header-primary {
+  color: black !important;
+}
+
+.date-header-secondary {
+  color: black;
+}
+
+.rct-sidebar {
+  width: 20%;
+  display: grid;
+  grid-auto-rows: 50px;
+}
+
+.group-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-color: #e0e0e0;
+  border-right: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+
+.rct-sidebar .rct-sidebar-row {
+  display: flex;
+  align-items: center;
+  height: 50px;
+  border-bottom: 1px solid #ddd;
+}
+
+.rct-sidebar .rct-sidebar-row.merged {
+  flex-direction: column;
+}
+
+.rct-sidebar .rct-sidebar-row.merged .rct-sidebar-row-group {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.rct-sidebar .rct-sidebar-row.merged .rct-sidebar-row-group:first-child {
+  border-bottom: 1px solid #ddd;
+}
+
+/* Media queries for responsive design */
+@media (max-width: 1200px) {
+  .App-header {
+    font-size: calc(8px + 2vmin);
+  }
+
+  .timeline .item {
+    padding: 2px;
+  }
+
+  .rct-sidebar {
+    width: 150px;
+  }
+}
+
+@media (max-width: 768px) {
+  .App-header {
+    font-size: calc(6px + 2vmin);
+  }
+
+  .rct-sidebar {
+    width: 100px;
+  }
+
+  .date-header-primary, .date-header-secondary {
+    font-size: smaller;
+  }
+}
+
+@media (max-width: 480px) {
+  .App-header {
+    font-size: calc(5px + 2vmin);
+  }
+
+  .rct-sidebar {
+    width: 80px;
+  }
+
+  .date-header-primary, .date-header-secondary {
+    font-size: x-small;
+  }
+}
+
+/* Additional media queries for dynamic resizing */
+@media (max-width: 600px) {
+  .timeline-container {
+    flex-direction: column;
+  }
+
+  .rct-sidebar {
+    width: 50px;
+  }
+
+  .sidebar-header {
+    display: none;
+  }
+
+  .task-details {
+    width: 100%;
+    padding: 5px;
+    border-left: none;
+  }
+}
+
+.task-details {
+  flex: 0 0 300px;
+  padding: 10px;
+  border-left: 1px solid #ddd;
+  overflow: auto;
+}
+
+@media (min-width: 601px) {
+  .task-details {
+    flex: 0 0 300px;
+    border-left: 1px solid #ddd;
+  }
+}

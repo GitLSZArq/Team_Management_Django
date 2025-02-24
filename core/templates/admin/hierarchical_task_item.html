@@ -1,0 +1,11 @@
+{# core/templates/admin/hierarchical_task_item.html #}
+<li data-id="{{ item.id }}" {% if item.children %}data-has-children="true"{% endif %}>
+    {{ item.name }}
+    {% if item.children %}
+        <ul class="nested">
+            {% for child in item.children %}
+                {% include "admin/hierarchical_task_item.html" with item=child %}
+            {% endfor %}
+        </ul>
+    {% endif %}
+</li>
