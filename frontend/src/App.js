@@ -8,6 +8,8 @@ import Projects from './components/Projects';
 import Tasks from './components/Tasks';
 import Layout from './components/Layout';
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 function App() {
   const [projects, setProjects] = useState([]);
   const [tasks, setTasks] = useState([]);
@@ -17,8 +19,8 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const projectsResponse = await axios.get('http://127.0.0.1:8000/api/projects/');
-        const tasksResponse = await axios.get('http://127.0.0.1:8000/api/tasks/');
+        const projectsResponse = await axios.get(`${API_URL}/api/projects/`);
+        const tasksResponse = await axios.get(`${API_URL}/api/tasks/`);
         setProjects(projectsResponse.data);
         setTasks(tasksResponse.data);
         setLoading(false);
